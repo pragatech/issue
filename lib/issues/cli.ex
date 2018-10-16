@@ -6,13 +6,14 @@ defmodule Issues.CLI do
   end
 
   def parse_args(argv) do
-    parse = OptionParser.parse(argv, switches: [help: :boolean], aliases: [h: :help])
-
-    case parse do
-      {[help: true],_,_} -> :help
-      {_,[user, project, count], _} -> {user, project, String.to_integer(count)}
-      {_, [user, project], _} -> {user, project, @default_count}
-      _ -> :help
-    end
+    OptionParser.parse(argv, switches: [help: :boolean], aliases: [h: :help])
+    |> elem(1)
+    |> args_to_internal_represntation
   end
+
+  defp args_to_internal_represntation([user, project, count]) do
+    {user, project, String.to_integer(count)}
+  end
+  defp args_to_internal_represntation([user, project]), do: {user, project, @default_count}
+  defp args_to_internal_represntation(_), do: :help
 end
