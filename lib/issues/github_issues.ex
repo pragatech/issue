@@ -1,6 +1,6 @@
 defmodule Issues.GithubIssues do
   #@user_agent [{"User-agent","Elixir dave@pragprog.com"}]
-  @github_url Application.get_env(:praga, :github_url)
+  @github_url Application.get_env(:issues, :github_url)
   def fetch(user, project) do
     issues_url(user,project)
     |> HTTPoison.get

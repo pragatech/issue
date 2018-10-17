@@ -28,4 +28,4 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env()}.exs"
-config :praga, github_url: "https://api.github.com"
+config :issues, github_url: "https://api.github.com"
